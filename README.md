@@ -19,9 +19,8 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/seanbreckenridge/bootstr
 - Sets some default environment variables:
   - Color/Language Options
   - `PS1` (prompt)
-- Sets some default aliases (`ls`/`ll`/git related aliases)
-- `e` to `vim`
-- sets lots of `vim` defaults
+- Sets some basic aliases (`ls`/`ll`/git related aliases/`e` to `vim`)
+- sets lots of `vim` defaults (at `~/.vimrc`)
 - installs [`vim-plug`](https://github.com/junegunn/vim-plug) (`vim` plugin manager)
 - prompts user to set global name, username and sets default editor for `git`
 
