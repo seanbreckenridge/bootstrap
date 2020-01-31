@@ -51,7 +51,11 @@ alias echopath='echo $PATH | tr ":" "\n"'
 alias e='vim'
 alias gp='git push'
 alias gl='git pull'
-
+alias ga='git add'
+alias gd='git diff'
+alias gds='git diff --staged'
+alias gc='git commit'
+alias gs='git status'
 EOF
 
 # add source for bash extensions to bashrc
@@ -180,4 +184,5 @@ if [[ -z $(git config --global user.email) ]]; then
 fi
 
 git config --global core.editor vim
+git config --global push.default simple
 
