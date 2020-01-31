@@ -1,0 +1,183 @@
+#!/usr/bin/env bash
+
+set -e  # exit on errors
+
+# function to check if required commands exist prior to bootstrap
+require () {
+  if [[ ! $(command -v "$1") ]]; then
+    echo -e "bootstrapping requires ${1}, Install that and re-run"
+  fi
+}
+
+require bash
+require curl
+require git
+require printf
+require vim
+
+printf "Checking shell...\n"
+# check that were using bash
+if ! echo "$SHELL" | grep -q bash; then
+  printf "Expected to be using bash, found %s\n" "$SHELL"
+  printf "Changing shell to bash...\n"
+  sudo chsh -s "$(command -v bash)"
+fi
+
+# shorthand for the bashrc file
+brc="${HOME}/.bashrc"
+bext="${HOME}/.bootstraprc"
+
+# create bashrc if it doesnt exist
+[[ ! -f "$brc" ]] && touch "$brc"
+
+printf "Creating extension bashrc file at %s\n" "$bext"
+cat << EOF > "$bext"
+
+export EDITOR=vim
+export TERM=xterm-256color
+export LANG='en_US.UTF-8'
+export LC_ALL='en_US.UTF-8'
+export PS1="[\u@\h \W] $ "
+
+alias ls='ls -h --color=tty'
+alias ll='ls -l'
+alias la='la -a'
+alias l.='ls -a'
+
+alias du='du -h'
+alias df='df -h'
+
+alias echopath='echo $PATH | tr ":" "\n"'
+alias e='vim'
+alias gp='git push'
+alias gl='git pull'
+
+EOF
+
+# add source for bash extensions to bashrc
+[ "$(grep -c "bootstraprc" "$brc")" = "0" ] && printf "source \"%s\"\n" "$bext" >> "$brc"
+
+source "$bext"
+
+printf "Installing vim-plug...\n"
+if [ ! -d ~/.vim/autoload ]; then
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+
+cat << EOF > "${HOME}/.vimrc"
+
+set nocompatible
+filetype off
+syntax on
+filetype plugin indent on
+let mapleader =" "
+set modelines=0
+set number relativenumber
+set ruler
+set visualbell
+set encoding=utf-8
+
+" Whitespace
+set wrap
+set textwidth=0  wrapmargin=0" stop line wrapping
+set formatoptions=tcqrn1
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set noshiftround
+
+" Cursor motion
+set scrolloff=3
+set backspace=indent,eol,start
+set matchpairs+=<:> " use % to jump between pairs
+runtime! macros/matchit.vim
+
+" Move up/down editor lines
+nnoremap j gj
+nnoremap k gk
+
+" Allow hidden buffers
+set hidden
+
+" Rendering
+set ttyfast
+
+" Status bar
+set laststatus=2
+
+" Last line
+set showmode
+set showcmd
+
+" Searching
+nnoremap / /\v
+vnoremap / /\v
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set showmatch
+map <leader><space> :let @/=''<cr> " clear search
+
+" Remap help key.
+inoremap <F1> <ESC>:set invfullscreen<CR>a
+nnoremap <F1> :set invfullscreen<CR>
+vnoremap <F1> :set invfullscreen<CR>
+
+" Textmate holdouts
+
+" Formatting
+map <leader>q gqip
+
+" Visualize tabs and newlines
+set listchars=tab:▸\ ,eol:¬
+" Uncomment this to enable by default:
+" set list " To enable by default
+" Or use your leader key + l to toggle on/off
+map <leader>l :set list!<CR> " Toggle tabs and EOL
+
+" Allow find commands to search the current directory recursively
+set path+=**
+
+" display all matching files for tab completion
+set wildmenu
+
+call plug#begin('~/.vim/plugged')
+Plug 'cespare/vim-toml'
+Plug 'scrooloose/nerdtree'
+call plug#end()
+
+map <leader>w :NERDTreeToggle<CR>
+
+EOF
+
+vim +PlugInstall +qall
+
+# Setting up default user directories
+default_user_dirs=("code" ".local" ".cache" ".credentials")
+
+for d_name in "${default_user_dirs[@]}"; do
+  if [[ ! -d "${HOME}/${d_name}" ]]; then
+    mkdir -p "${HOME}/${d_name}"
+  fi
+done
+
+
+printf "Checking git config...\n"
+# check for global name config
+if [[ -z $(git config --global user.name) ]]; then
+	printf "No global name set. Enter full name: "
+	read -r githubusername
+	git config --global user.name "$githubusername"
+fi
+
+# check for global email config
+if [[ -z $(git config --global user.email) ]]; then
+	printf "No global email set. Enter email connected to your GitHub account: "
+	read -r githubemail
+	git config --global user.email "$githubemail"
+fi
+
+git config --global core.editor vim
+
