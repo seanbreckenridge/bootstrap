@@ -47,8 +47,6 @@ alias l.='ls -a'
 alias du='du -h'
 alias df='df -h'
 
-alias echopath='echo $PATH | tr ":" "\n"'
-alias e='vim'
 alias gp='git push'
 alias gl='git pull'
 alias ga='git add'
@@ -56,6 +54,10 @@ alias gd='git diff'
 alias gds='git diff --staged'
 alias gc='git commit'
 alias gs='git status'
+
+alias echopath='echo $PATH | tr ":" "\n"'
+alias e='vim'
+
 EOF
 
 # add source for bash extensions to bashrc
