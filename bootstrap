@@ -32,7 +32,6 @@ bext="${HOME}/.bootstraprc"
 
 printf "Creating extension bashrc file at %s\n" "$bext"
 cat << EOF > "$bext"
-
 export EDITOR=vim
 export TERM=xterm-256color
 export LANG='en_US.UTF-8'
@@ -71,8 +70,6 @@ if [ ! -d ~/.vim/autoload ]; then
 fi
 
 cat << EOF > "${HOME}/.vimrc"
-
-set nocompatible
 filetype off
 syntax on
 filetype plugin indent on
@@ -155,7 +152,6 @@ Plug 'scrooloose/nerdtree'
 call plug#end()
 
 map <leader>w :NERDTreeToggle<CR>
-
 EOF
 
 vim +PlugInstall +qall
@@ -187,4 +183,3 @@ fi
 
 git config --global core.editor vim
 git config --global push.default simple
-
