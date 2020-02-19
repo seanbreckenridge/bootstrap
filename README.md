@@ -12,15 +12,15 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/seanbreckenridge/bootstr
 
 - `curl`
 - `git`
-- `vim`
+- `nvim`
 
 ### Features:
 
 - Sets some default environment variables:
   - Color/Language Options
   - `PS1` (prompt)
-- Sets some basic aliases (`ls`/`ll`/git related aliases/`e` to `vim`)
-- sets lots of `vim` defaults (at `~/.vimrc`)
+- Sets some basic aliases (`ls`/`ll`/git related aliases/`e` to `nvim`)
+- sets lots of `nvim` defaults (at `~/.config/nvim/init.vim`)
 - installs [`vim-plug`](https://github.com/junegunn/vim-plug) (`vim` plugin manager)
 - prompts user to set global name, username and sets default editor for `git`
 

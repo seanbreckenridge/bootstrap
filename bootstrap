@@ -13,7 +13,7 @@ require bash
 require curl
 require git
 require printf
-require vim
+require nvim
 
 printf "Checking shell...\n"
 # check that were using bash
@@ -32,7 +32,7 @@ bext="${HOME}/.bootstraprc"
 
 printf "Creating extension bashrc file at %s\n" "$bext"
 cat << EOF > "$bext"
-export EDITOR=vim
+export EDITOR=nvim
 export TERM=xterm-256color
 export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
@@ -55,7 +55,7 @@ alias gc='git commit'
 alias gs='git status'
 
 alias echopath='echo $PATH | tr ":" "\n"'
-alias e='vim'
+alias e='$EDITOR'
 
 EOF
 
@@ -64,12 +64,14 @@ EOF
 
 source "$bext"
 
-printf "Installing vim-plug...\n"
-if [ ! -d ~/.vim/autoload ]; then
-  curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+printf "Installing nvim-plug...\n"
+if [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]; then
+  curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
-cat << EOF > "${HOME}/.vimrc"
+mkdir -p "${HOME}/.config/nvim"
+cat << EOF > "${HOME}/.config/nvim/init.vim"
 filetype off
 syntax on
 filetype plugin indent on
@@ -146,15 +148,17 @@ set path+=**
 " display all matching files for tab completion
 set wildmenu
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/plugged')
 Plug 'cespare/vim-toml'
-Plug 'scrooloose/nerdtree'
+Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
-map <leader>w :NERDTreeToggle<CR>
+" open file manager
+map <leader>e :Explore<CR>
+
 EOF
 
-vim +PlugInstall +qall
+nvim +PlugInstall +qall
 
 # Setting up default user directories
 default_user_dirs=("code" ".local" ".cache" ".credentials")
@@ -181,5 +185,5 @@ if [[ -z $(git config --global user.email) ]]; then
 	git config --global user.email "$githubemail"
 fi
 
-git config --global core.editor vim
+git config --global core.editor nvim
 git config --global push.default simple
