@@ -6,6 +6,7 @@ set -e  # exit on errors
 require () {
   if [[ ! $(command -v "$1") ]]; then
     echo -e "bootstrapping requires ${1}, Install that and re-run"
+    exit 1
   fi
 }
 
