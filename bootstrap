@@ -56,7 +56,7 @@ alias gc='git commit'
 alias gst='git status'
 
 alias echopath='echo $PATH | tr ":" "\n"'
-alias e='$EDITOR'
+alias e='nvim'
 
 EOF
 
