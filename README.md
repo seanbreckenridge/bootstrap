@@ -2,6 +2,8 @@
 
 A script to setup a new `bash` VPS/servers with defaults I like.
 
+Can be run repeatedely to update from newly pushed changes to this repo.
+
 Run:
 
 ```
