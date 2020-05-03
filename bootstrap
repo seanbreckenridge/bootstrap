@@ -72,7 +72,7 @@ fi
 
 EOF
 
-cat << EOF "$HOME/.bash_profile"
+cat << EOF > "$HOME/.bash_profile"
 source "${HOME}/.bashrc"
 EOF
 
