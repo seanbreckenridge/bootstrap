@@ -65,8 +65,8 @@ alias echopath='echo $PATH | tr ":" "\n"'
 alias e='nvim'
 alias en='nvim'
 
-source "${HOME}".local/plugged/fzf/shell/key-bindings.bash
-source "${HOME}".local/plugged/fzf/shell/completion.bash
+source "${HOME}"/.local/plugged/fzf/shell/key-bindings.bash
+source "${HOME}"/.local/plugged/fzf/shell/completion.bash
 
 EOF
 
