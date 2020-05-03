@@ -21,7 +21,6 @@ require curl
 require git
 require printf
 require nvim
-optional_depends_on fzf
 
 printf "Checking shell...\n"
 # check that were using bash
@@ -81,6 +80,8 @@ fi
 
 mkdir -p "${HOME}/.config/nvim"
 curl -s https://raw.githubusercontent.com/seanbreckenridge/dotfiles/master/.config/nvim/init.vim > "${HOME}/.config/nvim/init.vim"
+# replace fzf line to install fzf from vimscript
+sed -i -e "s|^Plug '/usr/bin/fzf'.*$|Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }"
 
 nvim +PlugInstall +qall
 
