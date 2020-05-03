@@ -10,11 +10,18 @@ require () {
   fi
 }
 
+optional_depends_on() {
+  if [[ ! $(command -v "$1") ]]; then
+    echo -e "missing optional dependency: ${1}"
+  fi
+}
+
 require bash
 require curl
 require git
 require printf
 require nvim
+optional_depends_on fzf
 
 printf "Checking shell...\n"
 # check that were using bash
