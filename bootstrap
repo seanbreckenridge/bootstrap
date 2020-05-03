@@ -81,7 +81,7 @@ fi
 mkdir -p "${HOME}/.config/nvim"
 curl -s https://raw.githubusercontent.com/seanbreckenridge/dotfiles/master/.config/nvim/init.vim > "${HOME}/.config/nvim/init.vim"
 # replace fzf line to install fzf from vimscript
-sed -i -e "s|^Plug '/usr/bin/fzf'.*$|Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }|"
+sed -i -e "s|^Plug '/usr/bin/fzf'.*$|Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }|" "${HOME}/.config/nvim/init.vim"
 
 nvim +PlugInstall +qall
 
