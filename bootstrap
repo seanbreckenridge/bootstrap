@@ -73,7 +73,7 @@ fi
 EOF
 
 cat << EOF > "$HOME/.bash_profile"
-source "${HOME}/.bashrc"
+source ~/.bashrc
 EOF
 
 # add source for bash extensions to bashrc
