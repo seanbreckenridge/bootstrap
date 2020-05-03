@@ -65,6 +65,9 @@ alias echopath='echo $PATH | tr ":" "\n"'
 alias e='nvim'
 alias en='nvim'
 
+source "${HOME}".local/plugged/fzf/shell/key-bindings.bash
+source "${HOME}".local/plugged/fzf/shell/completion.bash
+
 EOF
 
 # add source for bash extensions to bashrc
@@ -112,3 +115,5 @@ fi
 
 git config --global core.editor nvim
 git config --global push.default simple
+
+echo "Once fzf is setup, run: 'sudo ln ~/.local/plugged/fzf/bin/fzf /usr/local/bin/fzf'"
