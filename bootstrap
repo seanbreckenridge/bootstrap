@@ -72,6 +72,10 @@ fi
 
 EOF
 
+cat << EOF "$HOME/.bash_profile"
+source "${HOME}/.bashrc"
+EOF
+
 # add source for bash extensions to bashrc
 [ "$(grep -c "bootstraprc" "$brc")" = "0" ] && printf "source \"%s\"\n" "$bext" >> "$brc"
 
