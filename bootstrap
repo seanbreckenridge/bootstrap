@@ -61,7 +61,7 @@ alias gds='git diff --staged'
 alias gc='git commit'
 alias gst='git status'
 
-alias echopath='echo $PATH | tr ":" "\n"'
+alias echopath='echo \$PATH | tr ":" "\n"'
 alias e='nvim'
 alias en='nvim'
 
