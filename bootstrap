@@ -122,4 +122,4 @@ fi
 git config --global core.editor nvim
 git config --global push.default simple
 
-echo "Once fzf is setup, run: 'sudo ln ~/.local/plugged/fzf/bin/fzf /usr/local/bin/fzf'"
+sudo ln ~/.local/plugged/fzf/bin/fzf /usr/local/bin/fzf
