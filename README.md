@@ -7,7 +7,7 @@ Can be run repeatedely to update from newly pushed changes to this repo.
 Run:
 
 ```
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/seanbreckenridge/bootstrap/master/bootstrap)"
+bash -c "$(curl -fsSL https://gitlab.com/seanbreckenridge/bootstrap/-/raw/master/bootstrap)"
 ```
 
 ### Requires:
