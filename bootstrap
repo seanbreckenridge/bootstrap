@@ -70,10 +70,11 @@ if [ -d ~/.local/plugged ]; then
     source ~/.local/plugged/fzf/shell/key-bindings.bash
     source ~/.local/plugged/fzf/shell/completion.bash
 fi
-
+[[ -f "${HOME}/.bash_ext" ]] && . "${HOME}/.bash_ext"
 EOF
 
 cat << EOF > "$HOME/.bash_profile"
+# edit ~/.bash_ext instead of this file
 source ~/.bashrc
 EOF
 
