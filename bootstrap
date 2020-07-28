@@ -59,6 +59,7 @@ alias ga='git add'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias gc='git commit'
+alias gcp='gc && gp'
 alias gst='git status'
 
 alias echopath='echo \$PATH | tr ":" "\n"'
