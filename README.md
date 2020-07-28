@@ -10,6 +10,8 @@ Run:
 bash -c "$(curl -fsSL https://gitlab.com/seanbreckenridge/bootstrap/-/raw/master/bootstrap)"
 ```
 
+Any additional bash customization gets put in `~/.bash_ext`
+
 ### Requires:
 
 - `curl`
