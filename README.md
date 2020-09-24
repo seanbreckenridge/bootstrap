@@ -18,6 +18,8 @@ Any additional bash customization gets put in `~/.bash_ext`
 - `git`
 - `nvim`
 
+On a debian-based server, that can typically be satisfied like: `apt update && apt install curl git neovim`
+
 ### Features:
 
 - Sets some default environment variables:
