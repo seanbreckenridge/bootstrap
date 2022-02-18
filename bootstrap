@@ -66,7 +66,14 @@ alias gA='ga -A'
 alias gd='git diff'
 alias gds='git diff --staged'
 alias gc='git commit'
-alias gcp='gc && gp'
+alias grv="git remote --verbose"
+gcp() {
+	if (($# == 0)); then
+		git commit && git push
+	else
+		git commit -m "$*" && git push
+	fi
+}
 alias gst='git status'
 
 alias echopath='echo \$PATH | tr ":" "\n"'
