@@ -22,6 +22,9 @@ require git
 require printf
 require nvim
 
+# git aliases
+curl -s 'https://raw.githubusercontent.com/seanbreckenridge/dotfiles/master/.config/zsh/aliases/git_aliases' > "${HOME}/.local/share/git_aliases"
+
 printf "Checking shell...\n"
 # check that were using bash
 if ! echo "$SHELL" | grep -q bash; then
@@ -94,9 +97,6 @@ fi
 mkdir -p "${HOME}/.config/nvim"
 curl -s 'https://raw.githubusercontent.com/seanbreckenridge/dotfiles/master/.config/nvim/init.vim' > "${HOME}/.config/nvim/init.vim"
 nvim +PlugInstall +qall
-
-# git aliases
-curl -s 'https://raw.githubusercontent.com/seanbreckenridge/dotfiles/master/.config/zsh/aliases/git_aliases' > "${HOME}/.local/share/git_aliases"
 
 # Setting up default user directories
 default_user_dirs=("code" ".local" ".cache" ".credentials")
