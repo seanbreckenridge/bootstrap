@@ -59,7 +59,7 @@ alias l.='ls -a'
 alias du='du -h'
 alias df='df -h'
 
-source ~/.local/share/git_aliases
+[[ -f "${HOME}/.local/share/git_aliases" ]] && . ~/.local/share/git_aliases
 
 alias path='echo \$PATH | tr ":" "\n"'
 alias e='nvim'
