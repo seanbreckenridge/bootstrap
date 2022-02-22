@@ -59,22 +59,7 @@ alias l.='ls -a'
 alias du='du -h'
 alias df='df -h'
 
-alias gp='git push'
-alias gl='git pull'
-alias ga='git add'
-alias gA='ga -A'
-alias gd='git diff'
-alias gds='git diff --staged'
-alias gc='git commit'
-alias grv="git remote --verbose"
-gcp() {
-	if ((\$# == 0)); then
-		git commit && git push
-	else
-		git commit -m "\$*" && git push
-	fi
-}
-alias gst='git status'
+source ~/.local/share/git_aliases
 
 alias path='echo \$PATH | tr ":" "\n"'
 alias e='nvim'
@@ -105,10 +90,13 @@ if [ ! -f ~/.local/share/nvim/site/autoload/plug.vim ]; then
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
+# nvim configuration
 mkdir -p "${HOME}/.config/nvim"
-curl -s https://raw.githubusercontent.com/seanbreckenridge/dotfiles/master/.config/nvim/init.vim > "${HOME}/.config/nvim/init.vim"
-
+curl -s 'https://raw.githubusercontent.com/seanbreckenridge/dotfiles/master/.config/nvim/init.vim' > "${HOME}/.config/nvim/init.vim"
 nvim +PlugInstall +qall
+
+# git aliases
+curl -s 'https://raw.githubusercontent.com/seanbreckenridge/dotfiles/master/.config/zsh/aliases/git_aliases' > "${HOME}/.local/share/git_aliases"
 
 # Setting up default user directories
 default_user_dirs=("code" ".local" ".cache" ".credentials")
