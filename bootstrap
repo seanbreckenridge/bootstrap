@@ -76,7 +76,7 @@ gcp() {
 }
 alias gst='git status'
 
-alias echopath='echo \$PATH | tr ":" "\n"'
+alias path='echo \$PATH | tr ":" "\n"'
 alias e='nvim'
 alias en='nvim'
 
