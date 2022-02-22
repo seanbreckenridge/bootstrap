@@ -61,6 +61,14 @@ alias l.='ls -a'
 alias du='du -h'
 alias df='df -h'
 
+R() {
+  if command -v ranger >/dev/null; then
+    ranger
+  else
+    python3 -m pip install ranger-fm && ranger
+  fi
+}
+
 [[ -f "${HOME}/.local/share/git_aliases" ]] && . ~/.local/share/git_aliases
 
 alias path='echo \$PATH | tr ":" "\n"'
