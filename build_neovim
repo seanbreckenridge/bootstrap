@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# build nvim from source on debian/ubuntu
+# https://github.com/neovim/neovim/wiki/Building-Neovim
+
+set -e
+
+sudo apt install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen git
+TEMP_BUILD_DIR="$(mktemp -d)"
+cd "$TEMP_BUILD_DIR"
+git clone --depth=1 'https://github.com/neovim/neovim'
+cd neovim
+make CMAKE_BUILD=Release
+sudo make install
+which nvim

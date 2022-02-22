@@ -20,6 +20,12 @@ Any additional bash customization gets put in `~/.bash_ext`
 
 On a debian-based server, that can typically be satisfied like: `apt update && apt install curl git neovim`
 
+To build nvim from scratch instead:
+
+```
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/seanbreckenridge/bootstrap/master/build_neovim)"
+```
+
 ### Features:
 
 - Sets some default environment variables:
