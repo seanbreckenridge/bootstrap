@@ -23,6 +23,7 @@ require printf
 require nvim
 
 # git aliases
+mkdir -p "${HOME}/.local/share"
 curl -s 'https://raw.githubusercontent.com/seanbreckenridge/dotfiles/master/.config/zsh/aliases/git_aliases' > "${HOME}/.local/share/git_aliases"
 
 printf "Checking shell...\n"
