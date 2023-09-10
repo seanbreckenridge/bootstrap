@@ -109,7 +109,7 @@ read -r buildnvim
 case "$buildnvim" in
 [yY][eE][sS] | [yY])
 	# install neovim from source
-	bash -c "$(curl -fsSL https://raw.githubusercontent.com/seanbreckenridge/bootstrap/master/install_neovim)"
+	bash -c "$(curl -fsSL https://raw.githubusercontent.com/seanbreckenridge/bootstrap/master/build_neovim)"
 	;;
 *) ;;
 esac
