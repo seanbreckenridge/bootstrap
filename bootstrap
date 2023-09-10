@@ -120,7 +120,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf || true
 # should ask me if I want to install keybindings
 
 # Setting up default user directories
-default_user_dirs=("code" ".local" ".cache" ".credentials")
+default_user_dirs=(".local" ".cache" ".credentials")
 
 for d_name in "${default_user_dirs[@]}"; do
 	if [[ ! -d "${HOME}/${d_name}" ]]; then
