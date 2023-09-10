@@ -92,7 +92,7 @@ EOF
 touch ~/.bash_ext
 
 # add source for bash extensions to bashrc
-if grep -q "bootstraprc" "$bashrc"; then
+if ! grep -q "bootstraprc" "$bashrc"; then
 	printf "source \"%s\"\n" "$bext" >>"$bashrc"
 fi
 
