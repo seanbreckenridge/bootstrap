@@ -106,7 +106,13 @@ rsync -Pavh "${HOME}/.dotfiles/.config/nvim/" "${HOME}/.config/nvim/"
 
 printf 'Build neovim from source? [y/N] '
 read -r buildnvim
-[[ "$buildnvim" == "y" ]] && bash -c "$(curl -fsSL https://raw.githubusercontent.com/seanbreckenridge/bootstrap/master/build_neovim)"
+case "$buildnvim" in
+[yY][eE][sS] | [yY])
+	# install neovim from source
+	bash -c "$(curl -fsSL https://raw.githubusercontent.com/seanbreckenridge/bootstrap/master/install_neovim)"
+	;;
+*) ;;
+esac
 
 # install fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf || true
