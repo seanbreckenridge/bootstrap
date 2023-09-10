@@ -10,29 +10,33 @@ Run:
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/seanbreckenridge/bootstrap/master/bootstrap)"
 ```
 
+Or, shorter (just redirects to the link above) in case I need to type it out:
+
+```
+bash -c "$(curl -sL sean.fish/s/b)"
+```
+
 Any additional bash customization gets put in `~/.bash_ext`
 
 ### Requires:
 
 - `curl`
 - `git`
-- `nvim`
 
-On a debian-based server, that can typically be satisfied like: `apt update && apt install curl git neovim`
+On a debian-based server, that can typically be satisfied like: `apt update && apt install curl git`
 
-To build nvim from scratch instead:
+### Features:
+
+Prompts you to build neovim from scratch (on a debian-like system), which you could also do with:
 
 ```
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/seanbreckenridge/bootstrap/master/build_neovim)"
 ```
 
-### Features:
-
 - Sets some default environment variables:
   - Color/Language Options
   - `PS1` (prompt)
 - Sets some basic aliases (`ls`/`ll`/git related aliases/`e` to `nvim`)
-- sets lots of `nvim` defaults (at `~/.config/nvim/init.vim`)
-- installs [`vim-plug`](https://github.com/junegunn/vim-plug) (`vim` plugin manager)
 - prompts user to set global name, username and sets default editor for `git`
-- Installs fzf using vimscript, add sets up fzf integration into vim and terminal (Ctrl+T,Ctrl+R)
+- neovim: clones my dotfiles to ~/.dotfiles and `rsync`s my neovim configuration, adds a `nvim_update_config` function to sync it later
+- Installs fzf, sets up fzf integration (Ctrl+T,Ctrl+R)

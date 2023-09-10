@@ -100,7 +100,9 @@ fi
 source "$bext"
 
 # nvim configuration
-git clone https://github.com/seanbreckenridge/dotfiles.git "${HOME}/.dotfiles" || true
+[[ ! -d "${HOME}/.dotfiles" ]] && {
+	git clone https://github.com/seanbreckenridge/dotfiles.git "${HOME}/.dotfiles" || true
+}
 mkdir -p "${HOME}/.config/nvim"
 rsync -Pavh "${HOME}/.dotfiles/.config/nvim/" "${HOME}/.config/nvim/"
 
@@ -115,7 +117,9 @@ case "$buildnvim" in
 esac
 
 # install fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf || true
+[[ ! -d "${HOME}/.fzf" ]] && {
+	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf || true
+}
 ~/.fzf/install
 # should ask me if I want to install keybindings
 
