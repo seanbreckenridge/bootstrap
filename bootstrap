@@ -104,10 +104,9 @@ git clone https://github.com/seanbreckenridge/dotfiles.git "${HOME}/.dotfiles" |
 mkdir -p "${HOME}/.config/nvim"
 rsync -Pavh "${HOME}/.dotfiles/.config/nvim/" "${HOME}/.config/nvim/"
 
-command -v nvim || {
-	printf "Installing neovim from source...\n"
-	bash -c "$(curl -fsSL https://raw.githubusercontent.com/seanbreckenridge/bootstrap/master/build_neovim)"
-}
+printf 'Build neovim from source? [y/N] '
+read -r buildnvim
+[[ "$buildnvim" == "y" ]] && bash -c "$(curl -fsSL https://raw.githubusercontent.com/seanbreckenridge/bootstrap/master/build_neovim)"
 
 # install fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf || true
