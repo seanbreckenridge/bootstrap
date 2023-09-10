@@ -71,6 +71,12 @@ alias path='echo \$PATH | tr ":" "\n"'
 alias e='nvim'
 alias en='nvim'
 
+nvim_update_config() {
+	cd "${HOME}/.dotfiles" || exit
+	git pull
+	rsync -Pavh "${HOME}/.dotfiles/.config/nvim/" "${HOME}/.config/nvim/"
+}
+
 [[ -f "${HOME}/.bash_ext" ]] && . "${HOME}/.bash_ext"
 EOF
 
@@ -92,17 +98,13 @@ source "$bext"
 # nvim configuration
 git clone https://github.com/seanbreckenridge/dotfiles.git "${HOME}/.dotfiles" || true
 mkdir -p "${HOME}/.config/nvim"
-# TODO: clone my dotfiles repo and rsync config, run :Lazy sync
+rsync -Pavh "${HOME}/.dotfiles/.config/nvim/" "${HOME}/.config/nvim/"
+
 
 # install fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf || true
 ~/.fzf/install
-
-# source fzf keybindings
-# shellcheck disable=SC1091
-. "${HOME}/.fzf/shell/completion.bash"
-# shellcheck disable=SC1091
-. "${HOME}/.fzf/shell/key-bindings.bash"
+# should ask me if I want to install keybindings
 
 # Setting up default user directories
 default_user_dirs=("code" ".local" ".cache" ".credentials")
