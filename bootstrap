@@ -14,7 +14,6 @@ require bash
 require curl
 require git
 require printf
-require nvim
 
 # git aliases
 mkdir -p "${HOME}/.local/share"
@@ -37,8 +36,13 @@ bext="${HOME}/.bootstraprc"
 
 printf "Creating extension bashrc file at %s\n" "$bext"
 cat <<EOF >"$bext"
-export EDITOR=nvim
-export VISUAL=nvim
+if command -v nvim >/dev/null; then
+	export EDITOR=nvim
+	export VISUAL=nvim
+else
+	export EDITOR=vim
+	export VISUAL=vim
+fi
 export TERM=xterm-256color
 export LANG='en_US.UTF-8'
 export PS1="[\u@\h \w ] $ "
@@ -68,8 +72,8 @@ R() {
 [[ -f "${HOME}/.local/share/git_aliases" ]] && . ~/.local/share/git_aliases 2>/dev/null
 
 alias path='echo \$PATH | tr ":" "\n"'
-alias e='nvim'
-alias en='nvim'
+alias e='$EDITOR'
+alias en='$EDITOR'
 
 nvim_update_config() {
 	cd "${HOME}/.dotfiles" || exit
@@ -100,6 +104,10 @@ git clone https://github.com/seanbreckenridge/dotfiles.git "${HOME}/.dotfiles" |
 mkdir -p "${HOME}/.config/nvim"
 rsync -Pavh "${HOME}/.dotfiles/.config/nvim/" "${HOME}/.config/nvim/"
 
+command -v nvim || {
+	printf "Installing neovim from source...\n"
+	bash -c "$(curl -fsSL https://raw.githubusercontent.com/seanbreckenridge/bootstrap/master/build_neovim)"
+}
 
 # install fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf || true
