@@ -9,6 +9,6 @@ TEMP_BUILD_DIR="$(mktemp -d)"
 cd "$TEMP_BUILD_DIR"
 git clone --depth=1 'https://github.com/neovim/neovim'
 cd neovim
-make CMAKE_BUILD=Release
+make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 which nvim
