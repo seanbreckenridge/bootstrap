@@ -15,9 +15,7 @@ require curl
 require git
 require printf
 
-# git aliases
 mkdir -p "${HOME}/.local/share"
-curl -s 'https://raw.githubusercontent.com/seanbreckenridge/dotfiles/master/.config/zsh/aliases/git_aliases' >"${HOME}/.local/share/git_aliases"
 
 printf "Checking shell...\n"
 # check that were using bash
@@ -70,6 +68,8 @@ R() {
 }
 
 [[ -f "${HOME}/.local/share/git_aliases" ]] && . ~/.local/share/git_aliases 2>/dev/null
+[[ -f "${HOME}/.local/share/cdtmp" ]] && . ~/.local/share/cdtmp
+[[ -f "${HOME}/.local/share/mkcd" ]] && . ~/.local/share/mkcd
 
 alias path='echo \$PATH | tr ":" "\n"'
 alias e='$EDITOR'
@@ -102,6 +102,10 @@ fi
 }
 mkdir -p "${HOME}/.config/nvim"
 rsync -Pavh "${HOME}/.dotfiles/.config/nvim/" "${HOME}/.config/nvim/"
+
+cp -v "${HOME}/.dotfiles/.config/zsh/aliases/git_aliases" "${HOME}/.local/share/git_aliases"
+cp -v "${HOME}/.dotfiles/.config/zsh/functions/cdtmp" "${HOME}/.local/share/cdtmp"
+cp -v "${HOME}/.dotfiles/.config/zsh/functions/mkcd" "${HOME}/.local/share/mkcd"
 
 printf 'Build neovim from source? [y/N] '
 read -r buildnvim
