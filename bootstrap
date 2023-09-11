@@ -76,8 +76,7 @@ alias e='$EDITOR'
 alias en='$EDITOR'
 
 nvim_update_config() {
-	cd "${HOME}/.dotfiles" || exit
-	git pull
+	(cd "${HOME}/.dotfiles" && git pull)
 	rsync -Pavh "${HOME}/.dotfiles/.config/nvim/" "${HOME}/.config/nvim/"
 }
 
