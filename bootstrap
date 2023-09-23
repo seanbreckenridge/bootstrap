@@ -29,7 +29,7 @@ fi
 bashrc="${HOME}/.bashrc"
 bext="${HOME}/.bootstraprc"
 
-# create bashrc if it doesnt exist
+# create bashrc if it doesn't exist
 [[ ! -f "$bashrc" ]] && touch "$bashrc"
 
 printf "Creating extension bashrc file at %s\n" "$bext"
